@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  calledStationId: MyString
+  callingStationId: MyString
+  accountingSessionId: MyString
+  accountingMultiSessionId: MyString
+  user: MyString
+  radius_user: one
+
+two:
+  calledStationId: MyString
+  callingStationId: MyString
+  accountingSessionId: MyString
+  accountingMultiSessionId: MyString
+  user: MyString
+  radius_user: two
