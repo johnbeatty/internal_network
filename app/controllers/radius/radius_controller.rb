@@ -2,15 +2,22 @@ module Radius
   class RadiusController < ApplicationController
     allow_unauthenticated_access
     skip_forgery_protection
+    before_action :set_radius_user
 
     def authorize
       logger.debug params
+
       if params["User-Password"]
-        render json: {}
+        if !@radius_user.nil? && @radius_user.password == params["User-Password"]
+          render json: {}
+        else
+          head :not_found, "content_type" => "application/json"
+        end
+      elsif !@radius_user.nil?
+        render json: {"control:Cleartext-Password": @radius_user.password}
       else
-        render json: {"control:Cleartext-Password": "hello2"}
+        head :not_found, "content_type" => "application/json"
       end
-      # head :ok
     end
 
     def authenticate
@@ -24,6 +31,22 @@ module Radius
 
     def post_auth
       logger.debug params
+
+      if !@radius_user.nil?
+        render json: {
+          "reply:Tunnel-Type": "13",
+          "reply:Tunnel-Medium-Type": "6",
+          "reply:Tunnel-Private-Group-ID": "3"
+        }
+      else
+        head :not_found, "content_type" => "application/json"
+      end
+    end
+
+    protected
+
+    def set_radius_user
+      @radius_user = Radius::User.where(username: params["User-Name"]).first
     end
   end
 end

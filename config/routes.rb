@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :radius_users
   namespace :radius do
-    post "/authorize/:user_name/mac(/:called_station_id)" => "radius#authorize"
-    post "/authenticate/:user_name/mac(/:called_station_id)" => "radius#authenticate"
+    post "/authorize" => "radius#authorize"
+    post "/authenticate" => "radius#authenticate"
     post "/user/:user_name/sessions/:acct_unique_session_id" => "radius#accounting"
-    # post "/user/:user_name/mac/:called_station_id" => "radius#post_auth"
+    post "/post_auth" => "radius#post_auth"
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
