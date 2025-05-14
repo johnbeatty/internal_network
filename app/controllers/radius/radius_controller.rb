@@ -55,9 +55,9 @@ module Radius
       if !@radius_user.nil?
         post_authorization.user_authorized!
         render json: {
-          "reply:Tunnel-Type": "13",
-          "reply:Tunnel-Medium-Type": "6",
-          "reply:Tunnel-Private-Group-ID": "3"
+          "reply:Tunnel-Type": @radius_user.tunnel_type,
+          "reply:Tunnel-Medium-Type": @radius_user.tunnel_medium_type,
+          "reply:Tunnel-Private-Group-ID": @radius_user.tunnel_private_group_id
         }
       else
         post_authorization.no_user!

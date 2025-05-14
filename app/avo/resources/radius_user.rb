@@ -9,8 +9,11 @@ class Avo::Resources::RadiusUser < Avo::BaseResource
   def fields
     field :id, as: :id
     field :username, as: :text
-    field :password, as: :password
+    field :password, as: :password, revealable: true
     field :notes, as: :text
+    field :tunnel_private_group_id, as: :number
+    field :tunnel_medium_type, as: :number
+    field :tunnel_type, as: :number
     field :authorization_requests, as: :has_many
     field :post_authorizations, as: :has_many
   end

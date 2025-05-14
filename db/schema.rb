@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_12_182036) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_14_123132) do
   create_table "radius_authorization_requests", force: :cascade do |t|
     t.string "calledStationId"
     t.string "callingStationId"
@@ -43,6 +43,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_182036) do
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tunnel_private_group_id", default: 1
+    t.integer "tunnel_medium_type", default: 1
+    t.integer "tunnel_type", default: 1
   end
 
   create_table "sessions", force: :cascade do |t|
