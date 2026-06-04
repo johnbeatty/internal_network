@@ -14,6 +14,9 @@ class Avo::Resources::RadiusUser < Avo::BaseResource
     field :tunnel_private_group_id, as: :number
     field :tunnel_medium_type, as: :number
     field :tunnel_type, as: :number
+    field :mac_authentication,
+      as: :boolean,
+      name: "Use MAC to authenticate"
     field :authorization_requests, as: :has_many
     field :post_authorizations, as: :has_many
   end

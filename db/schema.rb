@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_14_123132) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_14_153919) do
   create_table "radius_authorization_requests", force: :cascade do |t|
     t.string "calledStationId"
     t.string "callingStationId"
@@ -22,6 +22,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_123132) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["radius_user_id"], name: "index_radius_authorization_requests_on_radius_user_id"
+  end
+
+  create_table "radius_devices", force: :cascade do |t|
+    t.integer "radius_user_id", null: false
+    t.string "calledStationId"
+    t.boolean "allowed", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calledStationId"], name: "index_radius_devices_on_calledStationId"
+    t.index ["radius_user_id"], name: "index_radius_devices_on_radius_user_id"
   end
 
   create_table "radius_post_authorizations", force: :cascade do |t|
@@ -46,6 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_123132) do
     t.integer "tunnel_private_group_id", default: 1
     t.integer "tunnel_medium_type", default: 1
     t.integer "tunnel_type", default: 1
+    t.boolean "mac_authentication", default: false
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -66,6 +77,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_123132) do
   end
 
   add_foreign_key "radius_authorization_requests", "radius_users"
+  add_foreign_key "radius_devices", "radius_users"
   add_foreign_key "radius_post_authorizations", "radius_users"
   add_foreign_key "sessions", "users"
 end

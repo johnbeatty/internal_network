@@ -30,7 +30,9 @@ class RadiusUsersController < ApplicationController
   protected
 
   def radius_user_params
-    params.require(:radius_user).permit(:username, :password, :notes)
+    params.require(:radius_user).permit(:username, :password, :notes,
+      :tunnel_medium_type, :tunnel_private_group_id, :tunnel_type,
+      :mac_authentication)
   end
 
   def set_radius_user

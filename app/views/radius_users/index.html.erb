@@ -18,6 +18,15 @@
               <th scope="col" class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0">Username</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Password</th>
               <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-0">
+                <span class="sr-only">Devices</span>
+              </th>
+              <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-0">
+                <span class="sr-only">Authorizations</span>
+              </th>
+              <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-0">
+                <span class="sr-only">Authentications</span>
+              </th>
+              <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-0">
                 <span class="sr-only">Edit</span>
               </th>
             </tr>
@@ -28,15 +37,31 @@
                 <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0"><%= radius_user.username %></td>
                 <td class="px-3 py-4 text-sm whitespace-nowrap text-black font-light font-mono"><%= radius_user.password %></td>
                 <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-0">
-                  <%= link_to edit_radius_user_path(radius_user), class: "text-indigo-600 hover:text-indigo-900" do %>
-                    Edit<span class="sr-only">, <%= radius_user.username %></span>
+                  <%= link_to radius_user_devices_path(radius_user), class: "text-indigo-600 hover:text-indigo-900" do %>
+                    Devices
                   <% end %>
                 </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+                <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-0">
+                  <%= link_to radius_user_authorizations_path(radius_user), class: "text-indigo-600 hover:text-indigo-900" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" class="bi bi-passport" viewBox="0 0 16 16" id="Passport--Streamline-Bootstrap" height="16" width="16"><desc>Passport Streamline Icon: https://streamlinehq.com</desc><path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0 -6M6 8a2 2 0 1 1 4 0 2 2 0 0 1 -4 0m-0.5 4a0.5 0.5 0 0 0 0 1h5a0.5 0.5 0 0 0 0 -1z" stroke-width="1"></path><path d="M3.232 1.776A1.5 1.5 0 0 0 2 3.252v10.95c0 0.445 0.191 0.838 0.49 1.11 0.367 0.422 0.908 0.688 1.51 0.688h8a2 2 0 0 0 2 -2V4a2 2 0 0 0 -1 -1.732v-0.47A1.5 1.5 0 0 0 11.232 0.321l-8 1.454ZM4 3h8a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1H4a1 1 0 0 1 -1 -1V4a1 1 0 0 1 1 -1" stroke-width="1"></path></svg>
+                    <span class="sr-only">Authorization Requests</span>
+                  <% end %>
+                </td>
+                <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-0">
+                  <%= link_to radius_user_authentications_path(radius_user), class: "text-indigo-600 hover:text-indigo-900" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" class="bi bi-person-lock" viewBox="0 0 16 16" id="Person-Lock--Streamline-Bootstrap" height="16" width="16"><desc>Person Lock Streamline Icon: https://streamlinehq.com</desc><path d="M11 5a3 3 0 1 1 -6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0 -4 2 2 0 0 0 0 4m0 5.996V14H3s-1 0 -1 -1 1 -4 6 -4q0.845 0.002 1.544 0.107a4.5 4.5 0 0 0 -0.803 0.918A11 11 0 0 0 8 10c-2.29 0 -3.516 0.68 -4.168 1.332 -0.678 0.678 -0.83 1.418 -0.832 1.664zM9 13a1 1 0 0 1 1 -1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1zm3 -3a1 1 0 0 0 -1 1v1h2v-1a1 1 0 0 0 -1 -1" stroke-width="1"></path></svg>
+                    <span class="sr-only">Authentication Requests</span>
+                  <% end %>
+                  <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-0">
+                    <%= link_to edit_radius_user_path(radius_user), class: "text-indigo-600 hover:text-indigo-900" do %>
+                      Edit<span class="sr-only">, <%= radius_user.username %></span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
